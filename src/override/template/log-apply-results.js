@@ -19,7 +19,7 @@ module.exports = function(updatedModules, renewedModules) {
 			console.warn("[HMR] Processing full extension reload");
 			chrome.runtime.reload()
 		} else {
-			console.warn("[HMR] Can't proceed full reload. chrome.runtime.reload is not available");
+			location.reload();
 		}
 		////////////
 	}
