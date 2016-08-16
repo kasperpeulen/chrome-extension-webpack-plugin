@@ -1,10 +1,9 @@
 {
   "name": "chrome-extension-webpack-plugin",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Webpack plugin that makes hot reloading possible for chrome extensions.",
   "main": "lib/index.js",
   "scripts": {
-    "start": "webpack -w",
     "test": "mocha src/**/*.spec.js --compilers js:babel-core/register -w",
     "build": "babel src --out-dir lib"
   },
