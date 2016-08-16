@@ -2,14 +2,14 @@ import path from 'path';
 import fs from 'fs';
 import clc from 'cli-color';
 
-export default function() {
+module.exports = function(appNodemodules) {
 
   // HACK
   // Override Webpack HOT code loader with my custom one.
   // Hot update is loaded via XMLHttpRequest and evaled in extension
   // context instead of including script tag with that hot update
 
-  const originalJsonpMainTemplatePath  = require.resolve(path.join(__dirname, '../../node_modules/webpack/lib/JsonpMainTemplate.runtime.js'))
+  const originalJsonpMainTemplatePath  = require.resolve(path.join(appNodemodules, 'webpack/lib/JsonpMainTemplate.runtime.js'))
   const overridenJsonpMainTemplatePath = require.resolve(path.join(__dirname, './template/JsonpMainTemplate.runtime.js'))
   const overridenJsonpMainTemplate     = fs.readFileSync(overridenJsonpMainTemplatePath, {encoding: "utf8"})
 
@@ -17,7 +17,7 @@ export default function() {
 
   fs.writeFileSync(originalJsonpMainTemplatePath, overridenJsonpMainTemplate)
 
-  const originalLogApplyResultPath  = require.resolve(path.join(__dirname, '../../node_modules/webpack/hot/log-apply-result.js'))
+  const originalLogApplyResultPath  = require.resolve(path.join(appNodemodules, 'webpack/hot/log-apply-result.js'))
   const overridenLogApplyResultPath = require.resolve(path.join(__dirname, './template/log-apply-results.js'))
   const overridenLogApplyResult     = fs.readFileSync(overridenLogApplyResultPath, {encoding: "utf8"})
 
